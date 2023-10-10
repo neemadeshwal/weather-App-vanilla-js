@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin&family=Great+Vibes&family=Inter:wght@400;600;800&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="./style.css" rel="stylesheet"/>
+
+    <title>Weather App</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+</head>
+
+<body>
+   
+    <div class="weather-app-container">
+        <div class="weather-heading">
+
+            <div class="menu-bar-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </div>
+    <div class="weather-title">
+        <h1><span class="city-heading"></span> Weather</h1>
+        <h2 class="current-date"></h2>
+    </div>
+    <div class="alert-container">
+    </div>
+    </div>
+    <div class="weather-content-container">
+        <!-- menu-container -->
+        <div class="menu-container">
+            <div class="menu-header">
+            <h2 class="menu-title">settings</h2>
+
+            <hr>
+            <button class="close-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+
+            </button>
+        </div>
+
+            <div class="menu-content">
+              <ul class="menu-content-list">
+        
+            <li><p class="home-btn ">Home</p></li>
+               <hr>
+               <li class="location-container"> <p>Location</p>
+               <div class="location-setup">
+                <p class="by-place toggled-btn">place</p>
+                <p class="by-coords">coords</p>
+               </div>
+            </li>
+               <hr>
+
+                <li><p>Notification</p><label class="switch">
+                    <input type="checkbox" id="notification-toggle">
+
+                    <span class="slider round"></span>
+
+                  </label></li>
+               <hr>
+
+               <li class="temp-container"> <p>temperature (°C or °F)</p><label class="switch">
+                <input type="checkbox" id="temp-Btn">
+                <span class="slider round"></span>
+              </label>
+
+
+            </li>
+
+
+              <hr>
+
+               <li class="dark-background-container"> <p>dark-background</p>
+                <label class="switch">
+                <input type="checkbox"  id="togBtn">
+                <span class="slider round"></span>
+              </label></li>
+              <hr>
+
+
+        <li> <p class="detail-btn">Detail-weather</p></li>
+
+            </ul>
+            </div>
+        </div>
+        <!-- weather container --> 
+
+        <div class="weather-container display-container">
+            <div class="home-weather-header">
+                
+            </div> 
+            <header class="weather-header">
+
+        <form  id="form-submit" type="submit">
+            <input  id='place-search' placeholder="place" class='place-search active' type="text"/>
+
+           <div class="lat-lon-input-container ">
+            <input  id='lat-search' placeholder="latitude" class='lat-search input-coordinates' type="text"/>
+            <input  id='lon-search' placeholder="longitude" class='lon-search input-coordinates' type="text"/>
+        </div>
+        <button class="search-btn" type="submit">search</button>
+        </form>
+        <button class="location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair " viewBox="0 0 16 16">
+                <path d="M8.5.5a.5.5 0 0 0-1 0v.518A7.001 7.001 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7.001 7.001 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7.001 7.001 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7.001 7.001 0 0 0 8.5 1.018V.5Zm-6.48 7A6.001 6.001 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6.001 6.001 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6.002 6.002 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6.001 6.001 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1h-.48ZM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map active" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+              </svg>
+            </button>
+
+        <button class="dark-mode-btn">
+            <svg class="light-btn show-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+              </svg>
+              <svg class="dark-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+              </svg>
+             
+        </button>
+
+    </header>
+
+    <section class="brief-weather-report-container">
+
+    </section>
+    <div class="main-weather-container">
+    <section class="main-weather-display">
+
+
+    </section>
+    <canvas id="chart-weather-report" class="chart-weather-container">
+
+    </canvas>
+</div>
+
+    </div>
+
+    </div>
+    <div class="detail-page-weather-container">
+
+
+    </div>
+    
+    </div>
+ 
+    <script type="module" src="./index.js"></script> 
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+</body>
+
+</html>
